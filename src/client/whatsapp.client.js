@@ -1,7 +1,13 @@
 const { Client } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 
-const WhatsappClient = new Client();
+const WhatsappClient = new Client({
+  puppeteer: {
+    args: [
+      '--no-sandbox',
+    ],
+  }
+});
 
 WhatsappClient.on('qr', (qr) => {
   // Generate and scan this code with your phone
@@ -19,7 +25,7 @@ WhatsappClient.on('message', async (msg) => {
     msg.reply('pong');
   }
 
-  if(msg.body === 'Inscribeme') {
+  if (msg.body === 'Inscribeme') {
     const chat = await msg.getChat();
     console.log('==> Save next chat ID', chat);
     msg.reply('Te has inscrito a la lista de notificaciones');

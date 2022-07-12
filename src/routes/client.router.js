@@ -17,7 +17,8 @@ ClientRouter.post('/sendMessage', async function (req, res) {
 
   const clientId = `51${phoneNumber}@c.us`;
 
-  const phoneExits = await whatsappClient.isRegisteredUser(clientId).then((isRegistered) => isRegistered);
+  // const phoneExits = await whatsappClient.isRegisteredUser(clientId).then((isRegistered) => isRegistered);
+  const phoneExits = true;
 
   if (phoneExits) {
     console.log('User is registered');
